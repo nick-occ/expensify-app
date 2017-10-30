@@ -16,12 +16,12 @@ export class ExpenseListFilters extends React.Component{
        this.setState(()=>({ calendarFocused }));
    }
 
-   onTextChange = (e)=>{
-       this.props.setTextFilter(e.target.value);
-   }
+   onTextChange = (e) => {
+        this.props.setTextFilter(e.target.value);
+    };
 
    onSortChange = (e)=>{
-        e.target.value == 'date' ? 
+        e.target.value === 'date' ? 
         this.props.sortByDate() :
         this.props.sortByAmount()
     }
@@ -29,10 +29,10 @@ export class ExpenseListFilters extends React.Component{
    render() {
     return (
         <div>
-            <input 
-                type='text' 
-                value={this.props.filters.text} 
-                onChange={this.onTextChange} 
+            <input
+                type="text"
+                value={this.props.filters.text}
+                onChange={this.onTextChange}
             />
             <select 
                 value = {this.props.filters.sortBy}
@@ -43,13 +43,13 @@ export class ExpenseListFilters extends React.Component{
             </select>
             <DateRangePicker
                 startDate={this.props.filters.startDate}
-                endDate={this.props.filters.endDate} 
+                endDate={this.props.filters.endDate}
                 onDatesChange={this.onDatesChange}
                 focusedInput={this.state.calendarFocused}
                 onFocusChange={this.onFocusChange}
                 showClearDates={true}
                 numberOfMonths={1}
-                isOutsideRange={()=>false}
+                isOutsideRange={() => false}
             />
         </div>
     );
@@ -70,4 +70,4 @@ const mapDispatchToProps = (dispatch) => ({
     setEndDate: (endDate) => dispatch(setEndDate(endDate))
 });
 
-export default connect(mapStateToProps)(ExpenseListFilters);
+export default connect(mapStateToProps, mapDispatchToProps)(ExpenseListFilters);
