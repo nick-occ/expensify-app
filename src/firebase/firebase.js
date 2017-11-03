@@ -1,4 +1,5 @@
 import * as firebase from 'firebase';
+
 import moment from 'moment';
 
 // configuration to firebase
@@ -16,8 +17,9 @@ firebase.initializeApp(config);
 
 // connect to database
 const database = firebase.database();
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
-export { firebase, database as default };
+export { firebase, googleAuthProvider, database as default };
 
 // // remove child event listener
 // database.ref('expenses').on('child_removed',(snapshot)=>{
